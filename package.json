@@ -1,0 +1,9 @@
+{
+  "name": "Simple-weather-app",
+  "version": "1.0.0",
+  "description": "Uses the Dark Sky API to display the prevailing weather conditions",
+  "main": "index.js",
+  "repository": "https://github.com/Nyakaru/Simple-weather-app.git",
+  "author": "Nyakaru <Nyakaru477@gmail.com>",
+  "license": "MIT"
+}
