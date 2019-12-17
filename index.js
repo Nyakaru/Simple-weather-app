@@ -1,3 +1,4 @@
+//Import the dependencies
 const axios = require('axios')
 const express = require('express')
 const { DateTime } = require('luxon')
@@ -13,6 +14,7 @@ const app = express()
 app.get('/location/:place', (req, res) => {
   const gcpUrl = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + req.params.place + '&key=' + gcpKey
 
+  // Get the latitude and longitude of different locations from the Geocoding API
   axios
     .get(gcpUrl)
     .then(_res => {
@@ -22,6 +24,7 @@ app.get('/location/:place', (req, res) => {
       const location = latitude + ',' + longitude
       const darkSkyUrl = `${darkSkyBaseUrl}/${darkSkyApiKey}/${location}`
 
+      //Get the weather details of different locations from the Dark Sky API
       axios
         .get(darkSkyUrl)
         .then(_res => {
@@ -37,6 +40,7 @@ app.get('/location/:place', (req, res) => {
           const hourlySummary = _res.data.hourly.summary
           const dailySummary = _res.data.daily.summary
           
+          //Return the response
           res.send(`It is ${temperature} Fahrenheit (°F) and ${currentSummary} on ${formattedTime} O'clock in ${city}
           <br> <br> Weather Summary: The humidity is ${humidity}, wind speed of ${windSpeed}, cloud cover of ${cloudCover}
           and it will be ${hourlySummary} and ${dailySummary}`)
@@ -54,4 +58,4 @@ app.listen(4500, () => {
  console.log("Server running on port 4500")
 })
 
-module.exports = app;
+module.exports = app; //for testing
